@@ -3,9 +3,25 @@
 */
 import React, { Component } from 'react'
 import ListItem from '../components/list-item'
+import Axios from 'axios'
 
 class TopicList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataList: []
+        }
+    }
+    componentDidMount() {
+        Axios.get('https://cnodejs.org/api/v1/topics').then(res => {
+            let { data } = res.data
+            this.setState({
+                dataList: data
+            })
+        })
+    }
     render() {
+        let { dataList } = this.state
         return (
             <div className="main">
                 <div className="content">
@@ -17,10 +33,17 @@ class TopicList extends Component {
                         <a href=''>招聘</a>
                         <a href=''>客户端测试</a>
                     </div>
-                    <ListItem></ListItem>
+                    {
+                        dataList.map((item, i) => {
+                            return (
+                                <ListItem key={i} dataItem={item}></ListItem>
+                            )
+                        })
+                    }
+
                     {/*<topic-list :topicListData="topicListData"></topic-list>*/}
             </div>
-        <div class="aside">
+        <div className="aside">
             {/*<user-info user-name="xiaosi0707"></user-info>*/}
             {/*<div class="create-topic">*/}
                 {/*<router-link to="/createTopic">发布话题</router-link>*/}
