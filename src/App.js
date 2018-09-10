@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
 import CnodeRouter from './router/index'
+import CHeader from './components/common/header'
+import './assets/css/app.scss';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>哈哈哈</h1>
+          <CHeader></CHeader>
           <CnodeRouter></CnodeRouter>
       </div>
     );
