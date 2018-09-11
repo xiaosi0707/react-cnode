@@ -13,6 +13,7 @@ export default class Detail extends Component{
         }
         this.tabClassify = this.tabClassify.bind(this)
         this.replyWhich = this.replyWhich.bind(this)
+        this.up = this.up.bind(this)
     }
     tabClassify() {
         let { tab } = this.state.detailData
@@ -35,7 +36,11 @@ export default class Detail extends Component{
     }
     componentDidMount() {
         let { id } = this.props.match.params
-        Axios.get('https://cnodejs.org/api/v1/topic/' + id).then(res => {
+        Axios.get('https://cnodejs.org/api/v1/topic/' + id, {
+            params: {
+                accesstoken: '89946f10-bc83-409b-a5dc-04c4b6fe39a1'
+            }
+        }).then(res => {
             let { data } = res.data
             this.setState({
                 detailData: data,
@@ -44,13 +49,24 @@ export default class Detail extends Component{
         })
     }
     replyWhich(index) {
-        console.log(index)
         this.setState({
             whichText: index
         })
     }
+    up(item) {
+        Axios.post('https://cnodejs.org/api/v1/reply/'+ item.id +'/ups', {
+            accesstoken: '89946f10-bc83-409b-a5dc-04c4b6fe39a1'
+        }).then(res => {
+            // this.setState({
+            //     detailData: detailData
+            // })
+        })
+    }
+    componentWillReceiveProps() {
+        console.log(1)
+    }
     render() {
-        let { tabClassify, replyWhich } = this
+        let { tabClassify, replyWhich, up } = this
         let { detailData, whichText } = this.state
         return (
             <div className="main">
@@ -82,7 +98,7 @@ export default class Detail extends Component{
                                     <img src={item.author.avatar_url} alt="" />
                                 </dt>
                                 <dd>
-                                    <p><span>{item.author.loginname}</span><i>赞<em>{item.ups.length}</em></i><em onClick={() => replyWhich(i)}>回复</em></p>
+                                    <p><span>{item.author.loginname}</span><i onClick={() => up(item)}>赞<em>{item.ups.length}</em></i><em onClick={() => replyWhich(i)}>回复</em></p>
                                     <p dangerouslySetInnerHTML = {{ __html:item.content }}></p>
                                 </dd>
                                 {
