@@ -19,7 +19,7 @@ export default class List extends Component {
             return '<em>问答</em>'
         }  else if (tab === 'share') {
             return '<em>分享</em>'
-        }  else if (tab === 'jobb') {
+        }  else if (tab === 'job') {
             return '<em>招聘</em>'
         }
     }
@@ -33,6 +33,9 @@ export default class List extends Component {
                     <Link to={'/user-center/' + dataItem.author.loginname}>
                         <img src={ dataItem.author.avatar_url } alt="" />
                     </Link>
+                    {/*<Link to={{ pathname: '/user-center' , query : { loginname: dataItem.author.loginname, visit_count: dataItem.visit_count, reply_count: dataItem.reply_count }}}>*/}
+                        {/*<img src={ dataItem.author.avatar_url } alt="" />*/}
+                    {/*</Link>*/}
                 <span>{ dataItem.reply_count } / { dataItem.visit_count } </span>
                 </p>
             <p className="title">

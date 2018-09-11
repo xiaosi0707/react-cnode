@@ -12,6 +12,7 @@ export default class Detail extends Component{
             detailData: {}
         }
         this.tabClassify = this.tabClassify.bind(this)
+        this.replyWhich = this.replyWhich.bind(this)
     }
     tabClassify() {
         let { tab } = this.state.detailData
@@ -37,13 +38,20 @@ export default class Detail extends Component{
         Axios.get('https://cnodejs.org/api/v1/topic/' + id).then(res => {
             let { data } = res.data
             this.setState({
-                detailData: data
+                detailData: data,
+                whichText: null
             })
         })
     }
+    replyWhich(index) {
+        console.log(index)
+        this.setState({
+            whichText: index
+        })
+    }
     render() {
-        let { tabClassify } = this
-        let { detailData } = this.state
+        let { tabClassify, replyWhich } = this
+        let { detailData, whichText } = this.state
         return (
             <div className="main">
                 <div className="content">
@@ -66,27 +74,38 @@ export default class Detail extends Component{
                 <span>123 回复</span>
             </div>
             <div className="detail-msg-list">
-                <dl v-for="(item,key,index) in detailData.replies">
-                <dt>
-                    <img src="" alt="" />
-                </dt>
-                <dd>
-                    <p><span>小四</span><i>赞<em>1</em></i><em>回复</em></p>
-            <p>嘻嘻</p>
-        </dd>
-        <p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <a href="javascript:;">回复</a>
-    </p>
-    </dl>
-    </div>
+                {
+                    detailData.replies ? detailData.replies.map((item, i) => {
+                        return (
+                            <dl key={i}>
+                                <dt>
+                                    <img src={item.author.avatar_url} alt="" />
+                                </dt>
+                                <dd>
+                                    <p><span>{item.author.loginname}</span><i>赞<em>{item.ups.length}</em></i><em onClick={() => replyWhich(i)}>回复</em></p>
+                                    <p dangerouslySetInnerHTML = {{ __html:item.content }}></p>
+                                </dd>
+                                {
+                                    i === whichText ?  (
+                                        <p>
+                                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            <a href="javascript:;">回复</a>
+                                        </p>
+                                    ) : ''
+                                }
+
+                            </dl>
+                        )
+                    }) : ''
+                }
+            </div>
     </div>
         <div className="detail-reply">
             <div className="header">
                 <span>添加回复</span>
             </div>
             <div className="detail-reply-content">
-                <textarea v-model="messageContent"></textarea>
+                <textarea></textarea>
             </div>
             <div className="sub-btn">
                 <a href="javascript:;">回复</a>
