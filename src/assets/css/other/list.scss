@@ -28,6 +28,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       text-align: left;
+      span {
+        margin-right: 5px;
+      }
       i {
         display: inline-block;
         background: #80BD01;
@@ -38,6 +41,7 @@
         color: white;
         font-style: normal;
         line-height: 20px;
+
       }
       em {
         display: inline-block;

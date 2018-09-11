@@ -55,7 +55,7 @@ class TopicList extends Component {
             </div>
         <div className="aside">
             <UserInfo></UserInfo>
-            <div class="create-topic">
+            <div className="create-topic">
                 <Link to="/create-topic">发布话题</Link>
             </div>
         </div>

@@ -7,8 +7,40 @@ import { Link } from 'react-router-dom'
 export default class List extends Component {
     constructor(props) {
         super(props);
+        this.tagWhich = this.tagWhich.bind(this)
+    }
+    tagWhich() {
+        let { tab, top, good } = this.props.dataItem
+        if(top) {
+            return '<i>置顶</i>'
+        } else if (good) {
+            return '<i>精华</i>'
+        } else if (tab === 'ask') {
+            return '<em>问答</em>'
+        }  else if (tab === 'share') {
+            return '<em>分享</em>'
+        }  else if (tab === 'jobb') {
+            return '<em>招聘</em>'
+        }
+        // switch (tab) {
+        //     case 'ask':
+        //         return '<em>问答</em>'
+        //         break;
+        //     case 'share':
+        //         return '<em>分享</em>'
+        //         break;
+        //     case 'job':
+        //         return '<em>招聘</em>'
+        //         break;
+        //     case 'good':
+        //         return '<i>精华</i>'
+        //         break
+        //     default:
+        //         return '<i>置顶</i>'
+        // }
     }
     render() {
+        let { tagWhich } = this
         let { dataItem } = this.props
         return (
             <div className="list">
@@ -20,11 +52,7 @@ export default class List extends Component {
                 <span>{ dataItem.reply_count } / { dataItem.visit_count } </span>
                 </p>
             <p className="title">
-                {/*<i v-if="item.top">置顶</i>*/}
-                {/*<i v-show="!item.top && item.good">精华</i>*/}
-                {/*<em v-show="!item.top && item.tab === 'share'">分享</em>*/}
-                {/*<em v-show="item.tab === 'ask'">问答</em>*/}
-                {/*<em v-show="item.tab === 'job'">招聘</em>*/}
+                <span dangerouslySetInnerHTML = {{ __html: tagWhich() }}></span>
                 <Link to={'/detail/' + dataItem.id}>{ dataItem.title }</Link>
             </p>
             <p className="reply-avatar">
