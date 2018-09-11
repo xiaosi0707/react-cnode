@@ -2,6 +2,7 @@
 *wyunfei在2018/9/10创建了cnode项目文件topic-list.js
 */
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ListItem from '../components/list-item'
 import Axios from 'axios'
 
@@ -13,12 +14,20 @@ class TopicList extends Component {
         }
     }
     componentDidMount() {
-        Axios.get('https://cnodejs.org/api/v1/topics').then(res => {
+        console.log(this.props)
+        Axios.get('https://cnodejs.org/api/v1/topics', {
+            params: {
+                tab: 'all'
+            }
+        }).then(res => {
             let { data } = res.data
             this.setState({
                 dataList: data
             })
         })
+    }
+    componentWillReceiveProps() {
+        return true
     }
     render() {
         let { dataList } = this.state
@@ -26,12 +35,12 @@ class TopicList extends Component {
             <div className="main">
                 <div className="content">
                     <div className="header">
-                        <a href=''>全部</a>
-                        <a href=''>精华</a>
-                        <a href=''>分享</a>
-                        <a href=''>问答</a>
-                        <a href=''>招聘</a>
-                        <a href=''>客户端测试</a>
+                        <Link to='/?tab=all'>全部</Link>
+                        <Link to='/?tab=good'>精华</Link>
+                        <Link to='/?tab=share'>分享</Link>
+                        <Link to='/?tab=ask'>问答</Link>
+                        <Link to='/?tab=job'>招聘</Link>
+                        <Link to='/?tab=dev'>客户端测试</Link>
                     </div>
                     {
                         dataList.map((item, i) => {

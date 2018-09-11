@@ -4,12 +4,14 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import TopicList from '../views/topic-list'
+import Detail from '../views/detail'
 
 class RouterIndex extends Component {
     render () {
         return (
             <Switch>
-                <Route path='/' component={TopicList}></Route>
+                <Route path='/' component={TopicList} exact></Route>
+                <Route path='/detail' component={Detail} exact></Route>
             </Switch>
         )
     }
