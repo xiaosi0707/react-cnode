@@ -15,7 +15,7 @@ class RouterIndex extends Component {
                 <Route path='/' component={TopicList} exact></Route>
                 <Route path='/detail/:id' component={Detail} exact></Route>
                 <Route path='/create-topic' component={CreateTopic} exact></Route>
-                <Route path='/user-center' component={UserCenter} exact></Route>
+                <Route path='/user-center/:loginname' component={UserCenter} exact></Route>
             </Switch>
         )
     }

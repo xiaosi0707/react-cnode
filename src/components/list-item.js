@@ -22,22 +22,6 @@ export default class List extends Component {
         }  else if (tab === 'jobb') {
             return '<em>招聘</em>'
         }
-        // switch (tab) {
-        //     case 'ask':
-        //         return '<em>问答</em>'
-        //         break;
-        //     case 'share':
-        //         return '<em>分享</em>'
-        //         break;
-        //     case 'job':
-        //         return '<em>招聘</em>'
-        //         break;
-        //     case 'good':
-        //         return '<i>精华</i>'
-        //         break
-        //     default:
-        //         return '<i>置顶</i>'
-        // }
     }
     render() {
         let { tagWhich } = this
@@ -46,7 +30,7 @@ export default class List extends Component {
             <div className="list">
                 <div className="cell">
                 <p className="user-avatar">
-                    <Link to='/user-center'>
+                    <Link to={'/user-center/' + dataItem.author.loginname}>
                         <img src={ dataItem.author.avatar_url } alt="" />
                     </Link>
                 <span>{ dataItem.reply_count } / { dataItem.visit_count } </span>

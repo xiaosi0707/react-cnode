@@ -2,43 +2,78 @@
 *wyunfei在2018/9/11创建了cnode项目文件user-center.js
 */
 import React, { Component } from 'react'
+import ListItem from '../components/list-item'
+import Axios from 'axios'
 
 export default class UserCenter extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            userInfo: {}
+        }
+    }
+    componentDidMount() {
+        let { loginname } = this.props.match.params
+        Axios.get('https://cnodejs.org/api/v1/user/' + loginname).then(res => {
+            let { data } = res.data
+            this.setState({
+                userInfo: data
+            })
+        })
+    }
     render() {
+        let { userInfo } = this.state
+        console.log(userInfo.recent_topics)
         return (
             <div className="main">
                 <div className="user-content">
                     <div className="user-info">
                         <div className="header"></div>
-                        <div class="user-info-content">
+                        <div className="user-info-content">
                             <dl>
                                 <dt>
-                                    <img src="" alt="" />
+                                    <img src={userInfo.avatar_url} alt="" />
                                 </dt>
                                 <dd>
-                                    小四0707
+                                    {userInfo.loginname}
                                 </dd>
                             </dl>
                             <p>
-                                积分： 12123
+                                积分： {userInfo.score}
                             </p>
                             <p>
                                 {/*<router-link :to="{ name:'collectionList', params: { userName: userCenterData.loginname } }">{{ collectionNum.length }}个话题收藏</router-link>*/}
                                 123个话题收藏
                         </p>
                         <p>
-                            <span>注册时间18:09;90</span>
+                            <span>注册时间{ userInfo.create_at }</span>
                         </p>
                     </div>
                 </div>
-                <div className="new-create-topic">
-                    <div className="header"><span>最近创建的话题</span></div>
-                    {/*<topic-list :topicListData="userCenterData.recent_topics"></topic-list>*/}
-            </div>
-        <div className="new-create-topic">
-            <div className="header"><span>最近参与的话题dsdsd</span></div>
-            {/*<topic-list :topicListData="userCenterData.recent_replies"></topic-list>*/}
-    </div>
+                    {
+                        userInfo.recent_topics ? (
+                            <div className="new-create-topic">
+                                <div className="header"><span>最近创建的话题</span></div>
+                                {
+                                    userInfo.recent_topics.map((item, i) => {
+                                        return <ListItem key={i} dataItem={item}></ListItem>
+                                    })
+                                }
+                            </div>
+                        ) : ''
+                    }
+            {
+                userInfo.recent_topics ? (
+                    <div className="new-create-topic">
+                        <div className="header"><span>最近参与的话题</span></div>
+                        {
+                            userInfo.recent_replies.map((item, i) => {
+                                return <ListItem key={i} dataItem={item}></ListItem>
+                            })
+                        }
+                    </div>
+                ) : ''
+            }
     </div>
         <div className="aside">
             {/*<user-info :user-name="userCenterData.loginname"></user-info>*/}
