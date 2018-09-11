@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ListItem from '../components/list-item'
+import UserInfo from '../components/common/user-info'
 import Axios from 'axios'
 
 class TopicList extends Component {
@@ -53,7 +54,7 @@ class TopicList extends Component {
                     {/*<topic-list :topicListData="topicListData"></topic-list>*/}
             </div>
         <div className="aside">
-            {/*<user-info user-name="xiaosi0707"></user-info>*/}
+            <UserInfo></UserInfo>
             <div class="create-topic">
                 <Link to="/create-topic">发布话题</Link>
             </div>
