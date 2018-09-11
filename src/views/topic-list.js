@@ -54,10 +54,9 @@ class TopicList extends Component {
             </div>
         <div className="aside">
             {/*<user-info user-name="xiaosi0707"></user-info>*/}
-            {/*<div class="create-topic">*/}
-                {/*<router-link to="/createTopic">发布话题</router-link>*/}
-            {/*</div>*/}
-            侧边栏
+            <div class="create-topic">
+                <Link to="/create-topic">发布话题</Link>
+            </div>
         </div>
     </div>
         )
