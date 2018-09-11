@@ -11,6 +11,26 @@ export default class Detail extends Component{
         this.state = {
             detailData: {}
         }
+        this.tabClassify = this.tabClassify.bind(this)
+    }
+    tabClassify() {
+        let { tab } = this.state.detailData
+        switch (tab) {
+            case 'ask':
+                return '问答'
+            break;
+            case 'share':
+                return '分享'
+            break;
+            case 'job':
+                return '招聘'
+            break;
+            case 'good':
+                return '精华'
+            break
+            default:
+                return '小四 - 原创'
+        }
     }
     componentDidMount() {
         let { id } = this.props.match.params
@@ -22,6 +42,7 @@ export default class Detail extends Component{
         })
     }
     render() {
+        let { tabClassify } = this
         let { detailData } = this.state
         return (
             <div className="main">
@@ -29,8 +50,8 @@ export default class Detail extends Component{
                     <div className="content-inner">
                         <div className="detail-title"><span>置顶</span>{detailData.title}</div>
                         {
-                            detailData.author ? (<div className="title-msg">发布于8个月前·作者 { detailData.author.loginname } 123123 次浏览·最后一次编辑是 5
-                                个月前·来自 分享
+                            detailData.author ? (<div className="title-msg">发布于8个月前·作者 { detailData.author.loginname } {detailData.visit_count} 次浏览·最后一次编辑是 5
+                                个月前·来自 {tabClassify()}
                                 <a href="javascript:;">收藏</a>
                                 <p>
                                     {/*<a href="">编辑</a>*/}
