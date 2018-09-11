@@ -46,9 +46,9 @@ export default class List extends Component {
             <div className="list">
                 <div className="cell">
                 <p className="user-avatar">
-                    <a href=''>
+                    <Link to='/user-center'>
                         <img src={ dataItem.author.avatar_url } alt="" />
-                    </a>
+                    </Link>
                 <span>{ dataItem.reply_count } / { dataItem.visit_count } </span>
                 </p>
             <p className="title">
