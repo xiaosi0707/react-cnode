@@ -11,7 +11,7 @@ class RouterIndex extends Component {
         return (
             <Switch>
                 <Route path='/' component={TopicList} exact></Route>
-                <Route path='/detail' component={Detail} exact></Route>
+                <Route path='/detail/:id' component={Detail} exact></Route>
             </Switch>
         )
     }

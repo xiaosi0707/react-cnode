@@ -25,7 +25,7 @@ export default class List extends Component {
                 {/*<em v-show="!item.top && item.tab === 'share'">分享</em>*/}
                 {/*<em v-show="item.tab === 'ask'">问答</em>*/}
                 {/*<em v-show="item.tab === 'job'">招聘</em>*/}
-                <Link to='/detail'>{ dataItem.title }</Link>
+                <Link to={'/detail/' + dataItem.id}>{ dataItem.title }</Link>
             </p>
             <p className="reply-avatar">
                 <img src={ dataItem.author.avatar_url } alt="" />
