@@ -10,11 +10,14 @@ export default class Detail extends Component{
         super(props)
         this.state = {
             detailData: {},
+            contentDetail: ''
         }
         this.tabClassify = this.tabClassify.bind(this)
         this.replyWhich = this.replyWhich.bind(this)
         this.up = this.up.bind(this)
         this.getDetailData = this.getDetailData.bind(this)
+        this.reply = this.reply.bind(this)
+        this.getContentDetail = this.getContentDetail.bind(this)
     }
     tabClassify() {
         let { tab } = this.state.detailData
@@ -39,6 +42,7 @@ export default class Detail extends Component{
         let { getDetailData } = this
         getDetailData()
     }
+    // 请求数据
     getDetailData() {
         let { id } = this.props.match.params
         Axios.get('https://cnodejs.org/api/v1/topic/' + id, {
@@ -53,11 +57,13 @@ export default class Detail extends Component{
             })
         })
     }
+    // 要回复哪一条评论
     replyWhich(index) {
         this.setState({
             whichText: index
         })
     }
+    // 点赞
     up(item) {
         let { getDetailData } = this
         Axios.post('https://cnodejs.org/api/v1/reply/'+ item.id +'/ups', {
@@ -67,8 +73,31 @@ export default class Detail extends Component{
             if (success) getDetailData()
         })
     }
+    // 回复
+    reply(topicId) {
+        let { contentDetail } = this.state
+        let { getDetailData } = this
+       Axios.post('https://cnodejs.org/api/v1/topic/'+ topicId +'/replies', {
+           accesstoken: '89946f10-bc83-409b-a5dc-04c4b6fe39a1',
+           content: contentDetail
+       }).then(res => {
+           let { success } = res.data
+           if (success) getDetailData()
+           this.setState({
+               contentDetail: ''
+           })
+       })
+    }
+    // 获取content的值
+    getContentDetail(ev) {
+        ev.persist()
+        let { value } = ev.target
+        this.setState({
+            contentDetail: value
+        })
+    }
     render() {
-        let { tabClassify, replyWhich, up } = this
+        let { tabClassify, replyWhich, up, reply, getContentDetail } = this
         let { detailData, whichText} = this.state
         return (
             <div className="main">
@@ -125,10 +154,10 @@ export default class Detail extends Component{
                 <span>添加回复</span>
             </div>
             <div className="detail-reply-content">
-                <textarea></textarea>
+                <textarea name="" cols="30" rows="10" onChange={getContentDetail}></textarea>
             </div>
             <div className="sub-btn">
-                <a href="javascript:;">回复</a>
+                <a href="javascript:;" onClick={() => {reply(detailData.id)}}>回复</a>
         </div>
     </div>
     </div>
