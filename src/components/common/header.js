@@ -39,7 +39,9 @@ export default class CHeader extends Component {
                     </form>
                     <nav className="nav">
                         <a href=''>首页</a>
-                        <Link to='/msg'><span>{msgCount}</span>未读消息</Link>
+                        <Link to='/msg'>{
+                            msgCount ? <span>{msgCount}</span> : ''
+                        }未读消息</Link>
                         <a href="">新手入门</a>
                         <a href="">API</a>
                         <a href="">关于</a>

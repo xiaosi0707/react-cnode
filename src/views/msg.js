@@ -27,7 +27,6 @@ export default class Msg extends Component{
     }
     render() {
         let { hasNotReadMsg, hasReadMsg } = this.state
-        console.log(hasNotReadMsg)
         return (
             <div className="main">
                 <div className="content">
@@ -35,7 +34,6 @@ export default class Msg extends Component{
                         <div className="header">
                             <span>新消息</span>
                         </div>
-                        {/*<div className="cell"><p className="title">无消息</p></div>*/}
                         {
                             hasNotReadMsg.length ?
                             hasNotReadMsg.map((item, i) => {
@@ -59,8 +57,6 @@ export default class Msg extends Component{
                             }) : <div className="cell"><p className="title">无消息</p></div>
                         }
                     </div>
-                    {/*<msg-list title="新消息"></msg-list>*/}
-                {/*<msg-list title="过往信息"></msg-list>*/}
     </div>
         <div className="aside">
             <user-info user-name="xiaosi0707"></user-info>
