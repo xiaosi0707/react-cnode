@@ -37,11 +37,12 @@ export default class Msg extends Component{
                         </div>
                         {/*<div className="cell"><p className="title">无消息</p></div>*/}
                         {
+                            hasNotReadMsg.length ?
                             hasNotReadMsg.map((item, i) => {
                                 return (
                                     <MsgList key={i} {...{...item}}></MsgList>
                                 )
-                            })
+                            }) : <div className="cell"><p className="title">无消息</p></div>
                         }
                     </div>
                     <div className="list">
@@ -50,11 +51,12 @@ export default class Msg extends Component{
                         </div>
                         {/*<div className="cell"><p className="title">无消息</p></div>*/}
                         {
+                            hasReadMsg.length ?
                             hasReadMsg.map((item, i) => {
                                 return (
                                     <MsgList key={i} {...{...item}}></MsgList>
                                 )
-                            })
+                            }) : <div className="cell"><p className="title">无消息</p></div>
                         }
                     </div>
                     {/*<msg-list title="新消息"></msg-list>*/}
