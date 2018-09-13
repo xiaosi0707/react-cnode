@@ -8,8 +8,8 @@ export default class Msg extends Component{
         return (
             <div class="main">
                 <div class="content">
-                    <MsgList></MsgList>
-                    <MsgList></MsgList>
+                    <MsgList msgTitle='新消息'></MsgList>
+                    <MsgList msgTitle='过往消息'></MsgList>
                     {/*<msg-list title="新消息"></msg-list>*/}
                 {/*<msg-list title="过往信息"></msg-list>*/}
     </div>

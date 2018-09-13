@@ -46,6 +46,13 @@
         &:hover {
           color: white;
         }
+        span {
+          background: #80BD01;
+          color: white;
+         padding: 3px 5px;
+          -webkit-border-radius: 10px;
+          margin-right: 5px;
+        }
       }
     }
   }

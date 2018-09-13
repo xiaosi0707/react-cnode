@@ -3,9 +3,29 @@
 */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
 export default class CHeader extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            msgCount: 0
+        }
+    }
+    componentDidMount() {
+        Axios.get('https://cnodejs.org/api/v1/message/count', {
+            params: {
+                accesstoken: '29f4c9a1-2b49-4ec0-b5fc-2abfb4f3635f'
+            }
+        }).then(res => {
+            let { data } = res.data
+            this.setState({
+                msgCount: data
+            })
+        })
+    }
     render() {
+        let { msgCount } = this.state
         return (
             <div className="navbar">
                 <div className="navbar-inner">
@@ -18,7 +38,7 @@ export default class CHeader extends Component {
                     </form>
                     <nav className="nav">
                         <a href=''>首页</a>
-                        <Link to='/msg'>未读消息</Link>
+                        <Link to='/msg'><span>{msgCount}</span>未读消息</Link>
                         <a href="">新手入门</a>
                         <a href="">API</a>
                         <a href="">关于</a>
