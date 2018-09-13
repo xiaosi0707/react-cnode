@@ -19,6 +19,7 @@ export default class CHeader extends Component {
             }
         }).then(res => {
             let { data } = res.data
+
             this.setState({
                 msgCount: data
             })
