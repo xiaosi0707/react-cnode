@@ -27,7 +27,7 @@ export default class Msg extends Component{
     }
     render() {
         let { hasNotReadMsg, hasReadMsg } = this.state
-        console.log(hasReadMsg)
+        console.log(hasNotReadMsg)
         return (
             <div className="main">
                 <div className="content">
@@ -36,7 +36,13 @@ export default class Msg extends Component{
                             <span>新消息</span>
                         </div>
                         {/*<div className="cell"><p className="title">无消息</p></div>*/}
-                        <MsgList></MsgList>
+                        {
+                            hasNotReadMsg.map((item, i) => {
+                                return (
+                                    <MsgList key={i} {...{...item}}></MsgList>
+                                )
+                            })
+                        }
                     </div>
                     <div className="list">
                         <div className="header">
@@ -46,7 +52,7 @@ export default class Msg extends Component{
                         {
                             hasReadMsg.map((item, i) => {
                                 return (
-                                    <MsgList {...{...item}}></MsgList>
+                                    <MsgList key={i} {...{...item}}></MsgList>
                                 )
                             })
                         }
