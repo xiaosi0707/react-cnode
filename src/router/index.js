@@ -7,6 +7,7 @@ import TopicList from '../views/topic-list'
 import Detail from '../views/detail'
 import CreateTopic from '../views/create-topic'
 import UserCenter from '../views/user-center'
+import Msg from '../views/msg'
 
 class RouterIndex extends Component {
     render () {
@@ -16,6 +17,7 @@ class RouterIndex extends Component {
                 <Route path='/detail/:id' component={Detail} exact></Route>
                 <Route path='/create-topic' component={CreateTopic} exact></Route>
                 <Route path='/user-center/:loginname' component={UserCenter} exact></Route>
+                <Route path='/msg' component={Msg} exact></Route>
             </Switch>
         )
     }

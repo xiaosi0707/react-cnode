@@ -16,8 +16,9 @@ export default class Detail extends Component{
         this.replyWhich = this.replyWhich.bind(this)
         this.up = this.up.bind(this)
         this.getDetailData = this.getDetailData.bind(this)
-        this.reply = this.reply.bind(this)
+        this.replyDetail = this.replyDetail.bind(this)
         this.getContentDetail = this.getContentDetail.bind(this)
+        this.replyDetailOne = this.replyDetailOne.bind(this)
     }
     tabClassify() {
         let { tab } = this.state.detailData
@@ -74,7 +75,7 @@ export default class Detail extends Component{
         })
     }
     // 回复
-    reply(topicId) {
+    replyDetail(topicId) {
         let { contentDetail } = this.state
         let { getDetailData } = this
        Axios.post('https://cnodejs.org/api/v1/topic/'+ topicId +'/replies', {
@@ -88,6 +89,23 @@ export default class Detail extends Component{
            })
        })
     }
+    // 单条回复
+    replyDetailOne(replyId) {
+        console.log(1)
+        // let { contentDetail } = this.state
+        // let { getDetailData } = this
+        // Axios.post('https://cnodejs.org/api/v1/topic/'+ replyId +'/replies', {
+        //     accesstoken: '89946f10-bc83-409b-a5dc-04c4b6fe39a1',
+        //     content: contentDetail,
+        //     reply_id: replyId
+        // }).then(res => {
+        //     let { success } = res.data
+        //     if (success) getDetailData()
+        //     this.setState({
+        //         contentDetail: ''
+        //     })
+        // })
+    }
     // 获取content的值
     getContentDetail(ev) {
         ev.persist()
@@ -97,7 +115,7 @@ export default class Detail extends Component{
         })
     }
     render() {
-        let { tabClassify, replyWhich, up, reply, getContentDetail } = this
+        let { tabClassify, replyWhich, up, replyDetail, getContentDetail, replyDetailOne } = this
         let { detailData, whichText} = this.state
         return (
             <div className="main">
@@ -137,7 +155,7 @@ export default class Detail extends Component{
                                 {
                                     i === whichText ?  (
                                         <p>
-                                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            <textarea name="" id="" cols="30" rows="10" onChange={getContentDetail}></textarea>
                                             <a href="javascript:;">回复</a>
                                         </p>
                                     ) : ''
@@ -157,7 +175,7 @@ export default class Detail extends Component{
                 <textarea name="" cols="30" rows="10" onChange={getContentDetail}></textarea>
             </div>
             <div className="sub-btn">
-                <a href="javascript:;" onClick={() => {reply(detailData.id)}}>回复</a>
+                <a href="javascript:;" onClick={() => {replyDetail(detailData.id)}}>回复</a>
         </div>
     </div>
     </div>

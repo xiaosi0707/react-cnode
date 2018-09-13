@@ -2,6 +2,7 @@
 *wyunfei在2018/9/10创建了cnode项目文件header.js
 */
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class CHeader extends Component {
     render() {
@@ -17,7 +18,7 @@ export default class CHeader extends Component {
                     </form>
                     <nav className="nav">
                         <a href=''>首页</a>
-                        <a href=''>未读消息</a>
+                        <Link to='/msg'>未读消息</Link>
                         <a href="">新手入门</a>
                         <a href="">API</a>
                         <a href="">关于</a>
