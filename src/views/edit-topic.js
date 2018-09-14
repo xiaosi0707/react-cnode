@@ -7,11 +7,12 @@ import Axios from 'axios'
 export default class CreateTopic extends Component {
     constructor(props) {
         super(props)
-        let { tab, title, content } = this.props.location.query.topicData
+        let { tab, title, content, id } = this.props.location.query.topicData
         this.state = {
             title,
             content,
-            tab
+            tab,
+            id
         }
         this.topicUpdate = this.topicUpdate.bind(this)
         this.updateTitle = this.updateTitle.bind(this)
@@ -41,20 +42,21 @@ export default class CreateTopic extends Component {
         })
     }
     topicUpdate() {
+        let { tab, title, content, id } = this.state
         Axios.post('https://cnodejs.org/api/v1/topics/update', {
             accesstoken: '29f4c9a1-2b49-4ec0-b5fc-2abfb4f3635f',
-            topic_id: '5b988a23f1e8bc7579c784c3',
-            title: '测试 - 熊大',
-            content: '哈哈哈哈哈哈',
-            tab: 'dev'
+            topic_id: id,
+            title,
+            content,
+            tab
         }).then(res => {
-            console.log(res)
+            let { success } = res.data
+            if (success) this.props.history.push('/detail/' + id)
         })
     }
     render() {
         let { topicUpdate, updateTitle, updateContent, updateTab } = this
         let { title, content, tab } = this.state
-        // let { tab, title, content } = this.props.location.query.topicData
         let arr = [
             {
                 value: 'share',
