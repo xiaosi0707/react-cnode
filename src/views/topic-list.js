@@ -15,10 +15,9 @@ class TopicList extends Component {
         }
     }
     componentDidMount() {
-        console.log(this.props)
         Axios.get('https://cnodejs.org/api/v1/topics', {
             params: {
-                tab: 'all'
+                tab: 'dev'
             }
         }).then(res => {
             let { data } = res.data
@@ -56,7 +55,8 @@ class TopicList extends Component {
         <div className="aside">
             <UserInfo></UserInfo>
             <div className="create-topic">
-                <Link to="/create-topic">发布话题</Link>
+                {/*<Link to="/create-topic">发布话题</Link>*/}
+                <Link to={{ pathname: '/create-topic' , query : { topicData: {tab: '', title: '', content: ''} }}} >发布话题</Link>
             </div>
         </div>
     </div>

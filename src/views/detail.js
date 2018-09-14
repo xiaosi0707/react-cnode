@@ -3,6 +3,7 @@
 */
 
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
 export default class Detail extends Component{
@@ -127,7 +128,7 @@ export default class Detail extends Component{
                                 个月前·来自 {tabClassify()}
                                 <a href="javascript:;">收藏</a>
                                 <p>
-                                    {/*<a href="">编辑</a>*/}
+                                    <span><Link to={{ pathname: '/edit-topic' , query : { topicData: detailData }}} >编辑</Link></span>
                                     <span href="javascript:;">删除</span>
                                 </p>
                             </div>) : ''

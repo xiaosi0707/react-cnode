@@ -48,7 +48,14 @@ export default class CreateTopic extends Component {
             }
         })
     }
+    componentDidMount() {
+
+    }
     render() {
+        // if (this.props.location.query) {
+        //     let { tab, title, content } = this.props.location.query.topicData
+        // }
+        let { tab, title, content } = this.props.location.query.topicData
         let { createTopic, getSelect, getTitle, getContent } = this
         return (
             <div className="main">
@@ -70,16 +77,17 @@ export default class CreateTopic extends Component {
                                 </select>
                             </li>
                             <li>
-                                <input type="text" placeholder="标题字数10字以上" onChange={getTitle}/>
+                                <input type="text" placeholder="标题字数10字以上" onChange={getTitle} value={title}/>
                             </li>
                             <li>
-                                <textarea name="" cols="30" rows="10" onChange={getContent}></textarea>
+                                <textarea name="" cols="30" rows="10" onChange={getContent} ></textarea>
                             </li>
                             <li className="sub-btn">
                                 <a href="javascript:;" onClick={createTopic}>提交</a>
                             </li>
                         </ul>
                     </div>
+
                 </div>
             </div>
         )
