@@ -14,17 +14,20 @@ class App extends Component {
   }
   render() {
       let { isLoading } = this.state
-      Axios.interceptors.request.use(function (config) {
+      // 请求
+      Axios.interceptors.request.use( (config) => {
           // 在发送请求之前做些什么
-          config.loading = isLoading
+          this.setState({
+              isLoading: true
+          })
           return config;
       }, function (error) {
           // 对请求错误做些什么
           return Promise.reject(error);
       });
+      // // 响应
       Axios.interceptors.response.use( (response) => {
           // 对响应数据做点什么
-          console.log(response)
           this.setState({
               isLoading: false
           })
@@ -36,6 +39,7 @@ class App extends Component {
     return (
       <div className="App">
           <CHeader></CHeader>
+
           <CnodeRouter></CnodeRouter>
           {
               isLoading ? <ReactLoading type='balls' color='#80BD01' className='loading'></ReactLoading> : ''
