@@ -3,6 +3,7 @@
 */
 import React,{ Component } from 'react'
 import Axios from 'axios'
+import UpdateTitle from '../components/common/title'
 
 export default class CreateTopic extends Component {
     constructor(props) {
@@ -76,6 +77,7 @@ export default class CreateTopic extends Component {
             }
         ]
         return (
+            <UpdateTitle title='cnode社区 - 编辑话题'>
             <div className="main">
                 <div className="content">
                     <div className="header">
@@ -107,6 +109,7 @@ export default class CreateTopic extends Component {
                     </div>
                 </div>
             </div>
+            </UpdateTitle>
         )
     }
 }

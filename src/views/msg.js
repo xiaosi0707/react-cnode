@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import MsgList from '../components/msg-list'
 import Axios from 'axios'
+import UpdateTitle from '../components/common/title'
 export default class Msg extends Component{
     constructor(props) {
         super(props)
@@ -28,6 +29,7 @@ export default class Msg extends Component{
     render() {
         let { hasNotReadMsg, hasReadMsg } = this.state
         return (
+            <UpdateTitle title='cnode社区 - 消息'>
             <div className="main">
                 <div className="content">
                     <div className="list">
@@ -65,6 +67,7 @@ export default class Msg extends Component{
             </div>
         </div>
     </div>
+            </UpdateTitle>
         )
     }
 }

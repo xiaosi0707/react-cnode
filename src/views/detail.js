@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
+import UpdateTitle from '../components/common/title'
 
 export default class Detail extends Component{
     constructor(props) {
@@ -119,6 +120,7 @@ export default class Detail extends Component{
         let { tabClassify, replyWhich, up, replyDetail, getContentDetail, replyDetailOne } = this
         let { detailData, whichText} = this.state
         return (
+            <UpdateTitle title={'cnode社区 - ' + (detailData.title ? detailData.title : 'loading...')}>
             <div className="main">
                 <div className="content">
                     <div className="content-inner">
@@ -182,6 +184,7 @@ export default class Detail extends Component{
     </div>
                 {/*<user-info :user-name="detailData.author.loginname"></user-info>*/}
     </div>
+            </UpdateTitle>
         )
     }
 }

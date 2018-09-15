@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 import CnodeRouter from './router/index'
 import CHeader from './components/common/header'
 import './assets/css/app.scss';
@@ -39,7 +40,6 @@ class App extends Component {
     return (
       <div className="App">
           <CHeader></CHeader>
-
           <CnodeRouter></CnodeRouter>
           {
               isLoading ? <ReactLoading type='balls' color='#80BD01' className='loading'></ReactLoading> : ''
@@ -50,4 +50,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter(App);

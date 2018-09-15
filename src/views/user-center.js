@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import ListItem from '../components/list-item'
 import Axios from 'axios'
+import UpdateTitle from '../components/common/title'
 
 export default class UserCenter extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class UserCenter extends Component {
         let { userInfo } = this.state
         console.log(userInfo.recent_topics)
         return (
+            <UpdateTitle title={'cnode社区 - 用户 - ' + userInfo.loginname}>
             <div className="main">
                 <div className="user-content">
                     <div className="user-info">
@@ -83,6 +85,7 @@ export default class UserCenter extends Component {
         </div>
     </div>
     </div>
+            </UpdateTitle>
         )
     }
 }

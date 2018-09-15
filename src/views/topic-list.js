@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ListItem from '../components/list-item'
 import UserInfo from '../components/common/user-info'
+import UpdateTitle from '../components/common/title'
 import Axios from 'axios'
 
 class TopicList extends Component {
@@ -32,6 +33,7 @@ class TopicList extends Component {
     render() {
         let { dataList } = this.state
         return (
+            <UpdateTitle title='cnode社区 - 首页'>
             <div className="main">
                 <div className="content">
                     <div className="header">
@@ -60,6 +62,7 @@ class TopicList extends Component {
             </div>
         </div>
     </div>
+            </UpdateTitle>
         )
     }
 }

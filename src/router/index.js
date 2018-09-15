@@ -14,7 +14,7 @@ class RouterIndex extends Component {
     render () {
         return (
             <Switch>
-                <Route path='/' component={TopicList} exact></Route>
+                <Route path='/' component={TopicList} exact onEnter={()=>{document.title="这是title名称"}}></Route>
                 <Route path='/detail/:id' component={Detail} exact></Route>
                 <Route path='/create-topic' component={CreateTopic} exact></Route>
                 <Route path='/user-center/:loginname' component={UserCenter} exact></Route>
